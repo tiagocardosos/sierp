@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>Workshop de ExtJS 4 + PHP pela School of Net</title>
+
+        <!-- Arquivos do Ext JS - atenção ao local! -->
+        <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+
+        <script type="text/javascript" src="extjs/ext-all.js"></script>
+        
+        <script type="text/javascript" src="app/ux/Ext.ux.plugin.FormEnter.js"></script>
+        
+        <script type="text/javascript">
+            
+            Ext.onReady(function() {
+                
+                Ext.QuickTips.init();
+
+                function doLogin(){
+                    
+                    if(login.getForm().isValid()) {
+                    
+                        login.getForm().submit({
+
+                            method:'POST',
+                            waitTitle: 'Efetuando login no sistema',
+                            waitMsg: 'Verificando informações...',
+
+                            success: function(){
+                                login.getForm().reset();
+                                var redirect = 'principal.html';
+                                window.location = redirect;
+                            },
+
+                            failure: function(form, action){
+                                
+                                if(action.failureType === 'server'){
+                                    
+                                    obj = Ext.decode(action.response.responseText);
+                                    
+                                    Ext.Msg.show({
+                                        title : 'Falha no login!',
+                                        msg : obj.errors.reason,
+                                        buttons : Ext.Msg.OK,
+                                        icon : Ext.MessageBox.ERROR,
+                                        scope : this,
+                                        width : 150
+                                    });
+                                    
+                                }else{
+                                    Ext.Msg.alert('Atenção!', 'Não foi possível autenticar no sistema : ' + action.response.responseText);
+                                }
+
+                                login.getForm().reset();
+                            }
+                        });
+                    }
+                };
+
+                var login = new Ext.FormPanel({
+                
+                    labelWidth:50,
+                    url:'php/login.php?action=logar',
+                    frame: true,
+                    defaultType: 'textfield',
+                    monitorValid: true,
+                    plugins: [{
+                        ptype: 'formenter'
+                    }],
+                    items:[
+                        {
+                            fieldLabel:'Usuário',
+                            name: 'usuario',
+                            blankText: 'Preencha este campo com seu email.',
+                            width: 250,
+                            allowBlank: false
+                        },{
+                            fieldLabel: 'Senha',
+                            name: 'senha',
+                            width: 250,
+                            inputType: 'password',
+                            blankText: 'Preencha este campo com sua senha',
+                            allowBlank: false
+//                            listeners: {
+//                                specialkey: function(f,e){
+//                                    //enter dando submit
+//                                    if(e.getKey() === e.ENTER) {
+//                                        doLogin();
+//                                    }
+//                                }
+//                            }
+                        }],buttons:[{
+                            text: 'Login',
+                            formBind: true,
+                            handler: doLogin
+                        }]
+                });
+
+
+                var win = new Ext.Window({
+                    layout: 'fit',
+                    title: 'Login no Sistema',
+                    width: 280,
+                    height: 140,
+                    y: 250,
+                    closable: false,
+                    resizable: false,
+                    draggable: false,
+                    plain: true,
+                    border: false,
+                    items: [login]
+                });
+     
+                win.show();
+
+            });
+        </script>
+
+    </head>
+    <body></body>
+</html>
