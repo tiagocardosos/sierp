@@ -1,49 +1,20 @@
 Ext.define('MSIERP.view.produto.List' ,{
-    extend: 'Ext.grid.Panel',
+    extend: 'MSIERP.view.AbstractList',
     alias : 'widget.produtoList',
     store: 'Produto',
-    title : 'Lista de Produto',
+    title : 'Lista de Produto(s)',
     //selModel: {mode: 'MULTI'},
     selModel: Ext.create('Ext.selection.CheckboxModel'),
-    columnLines: true,
- 
+    columnLines: true, 
     initComponent: function(){
-        this.tbar = [
-            {
-                text: 'Incluir',
-                action: 'insert',
-                iconCls: 'add',
-                itemId: 'insert'
-            }
-            ,{
-                text: 'Editar',
-                action: 'edit',
-                iconCls: 'edit',
-                itemId: 'edit',
-                disabled: true
-            },
-            {
-                text: 'Excluir',
-                action: 'destroy',
-                iconCls: 'delete',
-                itemId: 'delete',
-                disabled: true
-            }
-            ,{
-                text: 'Recarregar dados',
-                action: 'refresh',
-                iconCls: 'refresh',
-                itemId: 'refresh'
-            }
-        ];
+        this.tbar = [];
 
         this.columns = [
             Ext.create('Ext.grid.RowNumberer'),
             {header: 'ID',  dataIndex: 'id',  flex: 1},
-            {header: 'CPF',  dataIndex: 'cpf',  flex: 1},
-            {header: 'Nome',  dataIndex: 'nome',  flex: 1},
-            {header: 'E-mail',  dataIndex: 'email',  flex: 1},
-            {header: 'Ativo',  dataIndex: 'ativo',  flex: 1}
+            {header: 'Produto',  dataIndex: 'cpf',  flex: 2},
+            {header: 'Fornecedor',  dataIndex: 'nome',  flex: 2},
+            {header: 'Ativo',  dataIndex: 'stAtivo',  flex: 1}
         ];
 
         this.dockedItems = [{

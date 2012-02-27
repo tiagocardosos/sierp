@@ -15,8 +15,9 @@ Ext.define('MSIERP.view.usuario.List' ,{
         this.columns = [
             Ext.create('Ext.grid.RowNumberer'),
             {header: 'ID',  dataIndex: 'id',  flex: 1},
-            {header: 'Nome',  dataIndex: 'nmPessoa',  flex: 1},
-            {header: 'Perfil',  dataIndex: 'dsPerfil',  flex: 1},
+            {header: 'CPF',  dataIndex: 'nrCPF',  flex: 2},
+            {header: 'Usuário',  dataIndex: 'nmUsuario',  flex: 2},
+            {header: 'Perfil',  dataIndex: 'dsPerfil',  flex: 2},
             {header: 'Ativo',  dataIndex: 'stAtivo',  flex: 1}
         ];
 

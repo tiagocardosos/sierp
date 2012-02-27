@@ -1,16 +1,24 @@
+var dadosCMB = Ext.create('Ext.data.Store', {
+    fields: ['val', 'desc'],
+    data : [
+        {"val":"D", "desc":"Dinheiro"},
+        {"val":"C", "desc":"Cartão"},
+        {"val":"B", "desc":"Boleto"},
+        {"val":"CH", "desc":"Cheque"}
+        
+    ]
+});
+
+
 Ext.define('MSIERP.view.formaPagamento.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.formaPagamentoEdit',
     title : 'Edição de Parâmetro do Sistema',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
+            border: false,  
             fieldDefaults: {
                 anchor: '100%',
                 labelAlign: 'right',
@@ -26,31 +34,33 @@ Ext.define('MSIERP.view.formaPagamento.Edit', {
             },
             items: [{
                 xtype: 'textfield',
-                name : 'dsPerfil',
-                ref: 'dsPerfil',
-                fieldLabel: 'Perfil',
+                name : 'dsFormaPagamento',
+                ref: 'dsFormaPagamento',
+                fieldLabel: 'Forma de Pagamento',
                 allowBlank: false
             },{
-                xtype: 'textfield',
-                name : 'stAtivo',
-                ref: 'stAtivo',
+                xtype: 'combobox',
+                fieldLabel: 'Tipo',
+                store: dadosCMB,
+                queryMode: 'local',
+                displayField: 'desc',
+                valueField: 'val'             
+            },{
+                xtype: 'fieldcontainer',
                 fieldLabel: 'Ativo',
-                allowBlank: false                
-            }
+                defaultType: 'checkboxfield',
+                items: [
+                    {
+                        name      : 'stAtivo',
+                        inputValue: true,
+                        checked   : true,
+                        id        : 'stAtivo'
+                    }
+               ]}
             ]}
         ];
 
-        this.buttons = [{
-            text: 'Salvar',
-            action: 'save',
-            iconCls: 'save'
-        },
-        {
-            text: 'Cancelar',
-            scope: this,
-            iconCls: 'cancel',
-            handler: this.close
-        }];
+        this.buttons = [];
 
         this.callParent(arguments);
     }    

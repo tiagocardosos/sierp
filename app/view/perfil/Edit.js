@@ -1,22 +1,18 @@
 Ext.define('MSIERP.view.perfil.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.perfilEdit',
     title : 'Edição de Usuário',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
+            border: false,
             fieldDefaults: {
                 anchor: '100%',
-                labelAlign: 'right',
                 labelWidth: 140,
+                labelAlign: 'right',
                 allowBlank: false,                
-                width : 400,
+                width : 450,
                 combineErrors: false,
                 msgTarget: 'side'
             },
@@ -45,17 +41,7 @@ Ext.define('MSIERP.view.perfil.Edit', {
             ]}
         ];
 
-        this.buttons = [{
-            text: 'Salvar',
-            action: 'save',
-            iconCls: 'save'
-        },
-        {
-            text: 'Cancelar',
-            scope: this,
-            iconCls: 'cancel',
-            handler: this.close
-        }];
+        this.buttons = [];
 
         this.callParent(arguments);
     }    

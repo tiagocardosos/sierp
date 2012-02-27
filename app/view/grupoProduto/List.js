@@ -1,42 +1,17 @@
+Ext.require(['MSIERP.view.AbstractList']);
+
 Ext.define('MSIERP.view.grupoProduto.List' ,{
-    extend: 'Ext.grid.Panel',
+    extend: 'MSIERP.view.AbstractList',
     alias : 'widget.grupoProdutoList',
     store: 'GrupoProduto',
-    title : 'Lista de Parâmetros do Sistema',
+    title : 'Lista de Grupo de Produtos',
     //selModel: {mode: 'MULTI'},
     selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
  
     initComponent: function(){
         
-        this.tbar = [
-            {
-                text: 'Incluir',
-                action: 'insert',
-                iconCls: 'add',
-                itemId: 'insert'
-            }
-            ,{
-                text: 'Editar',
-                action: 'edit',
-                iconCls: 'edit',
-                itemId: 'edit',
-                disabled: true
-            },
-            {
-                text: 'Excluir',
-                action: 'destroy',
-                iconCls: 'delete',
-                itemId: 'delete',
-                disabled: true
-            }
-            ,{
-                text: 'Recarregar dados',
-                action: 'refresh',
-                iconCls: 'refresh',
-                itemId: 'refresh'
-            }
-        ];
+        this.tbar = [];
 
         this.columns = [
             Ext.create('Ext.grid.RowNumberer'),

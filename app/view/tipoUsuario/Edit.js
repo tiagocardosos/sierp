@@ -1,3 +1,11 @@
+var tiposUsuario = Ext.create('Ext.data.Store', {
+    fields: ['valor', 'nome'],
+    data : [
+        {"valor":"PF", "nome":"Alabama"},
+        {"valor":"PJ", "nome":"Alaska"}
+    ]
+});
+
 Ext.define('MSIERP.view.tipoUsuario.Edit', {
     extend: 'Ext.window.Window',
     alias : 'widget.tipoUsuarioEdit',
@@ -30,6 +38,13 @@ Ext.define('MSIERP.view.tipoUsuario.Edit', {
                 ref: 'dsPerfil',
                 fieldLabel: 'Perfil',
                 allowBlank: false
+            },{
+                xtype: 'combobox',
+                fieldLabel: 'Tipo',
+                store: states,
+                queryMode: 'local',
+                displayField: 'nome',
+                valueField: 'value'
             },{
                 xtype: 'textfield',
                 name : 'stAtivo',

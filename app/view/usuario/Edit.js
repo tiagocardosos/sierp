@@ -1,22 +1,19 @@
 Ext.require(['MSIERP.view.perfil.Combo']);
 
 Ext.define('MSIERP.view.usuario.Edit', {
-    extend: 'Ext.window.Window',
+    //extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',        
     alias : 'widget.usuarioEdit',
     title : 'Edição de Usuário',
-    layout: 'fit',    
-    autoShow: true,
-    modal: true,    
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',
-            bodyPadding : '20',
+            border: false,
             fieldDefaults: {
                 anchor: '100%',
-                labelAlign: 'right',
                 labelWidth: 140,
+                labelAlign: 'right',
                 allowBlank: false,                
                 width : 450,
                 combineErrors: false,

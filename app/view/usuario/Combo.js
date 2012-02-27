@@ -1,10 +1,10 @@
-Ext.define('MSIERP.view.tipoDespesa.Combo', {
+Ext.define('MSIERP.view.usuario.Combo', {
     extend: 'Ext.form.field.ComboBox',
-    alias: 'widget.tipoDespesaCombo',
-    name : 'tipo_despesa_id',
-    fieldLabel: 'Tipo de despesa',
-    store: 'TipoDespesas',
-    displayField: 'nome',
+    alias: 'widget.usuarioCombo',
+    name : 'usuario_id',
+    fieldLabel: 'Usuário',
+    store: 'Usuario',
+    displayField: 'nmUsuario',
     valueField: 'id',
     queryMode: 'local',
     typeAhead: true,

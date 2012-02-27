@@ -1,50 +1,22 @@
 Ext.define('MSIERP.view.planoContas.List' ,{
-    extend: 'Ext.grid.Panel',
+    extend: 'MSIERP.view.AbstractList',
     alias : 'widget.planoContasList',
     store: 'PlanoContas',
-    title : 'Lista de Parâmetros do Sistema',
+    title : 'Lista de Plano de Contas',
     //selModel: {mode: 'MULTI'},
     selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
  
     initComponent: function(){
         
-        this.tbar = [
-            {
-                text: 'Incluir',
-                action: 'insert',
-                iconCls: 'add',
-                itemId: 'insert'
-            }
-            ,{
-                text: 'Editar',
-                action: 'edit',
-                iconCls: 'edit',
-                itemId: 'edit',
-                disabled: true
-            },
-            {
-                text: 'Excluir',
-                action: 'destroy',
-                iconCls: 'delete',
-                itemId: 'delete',
-                disabled: true
-            }
-            ,{
-                text: 'Recarregar dados',
-                action: 'refresh',
-                iconCls: 'refresh',
-                itemId: 'refresh'
-            }
-        ];
+        this.tbar = [];
 
         this.columns = [
             Ext.create('Ext.grid.RowNumberer'),
             {header: 'ID',  dataIndex: 'id',  flex: 1},
-            {header: 'CPF',  dataIndex: 'cpf',  flex: 1},
-            {header: 'Nome',  dataIndex: 'nome',  flex: 1},
-            {header: 'E-mail',  dataIndex: 'email',  flex: 1},
-            {header: 'Ativo',  dataIndex: 'ativo',  flex: 1}
+            {header: 'Nº Classificação',  dataIndex: 'nrClassificacao',  flex: 1},
+            {header: 'Plano Contas',  dataIndex: 'dsPlanoContas',  flex: 3},
+            {header: 'Ativo',  dataIndex: 'stAtivo',  flex: 1}
         ];
 
         this.dockedItems = [{

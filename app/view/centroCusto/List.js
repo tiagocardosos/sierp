@@ -1,5 +1,7 @@
+Ext.require(['MSIERP.view.AbstractList']);
+
 Ext.define('MSIERP.view.centroCusto.List' ,{
-    extend: 'Ext.grid.Panel',
+    extend: 'MSIERP.view.AbstractList',
     alias : 'widget.centroCustoList',
     store: 'CentroCusto',
     title : 'Lista de Centro Custo',
@@ -8,42 +10,13 @@ Ext.define('MSIERP.view.centroCusto.List' ,{
     columnLines: true,
     initComponent: function(){
         
-        this.tbar = [
-            {
-                text: 'Incluir',
-                action: 'insert',
-                iconCls: 'add',
-                itemId: 'insert'
-            }
-            ,{
-                text: 'Editar',
-                action: 'edit',
-                iconCls: 'edit',
-                itemId: 'edit',
-                disabled: true
-            },
-            {
-                text: 'Excluir',
-                action: 'destroy',
-                iconCls: 'delete',
-                itemId: 'delete',
-                disabled: true
-            }
-            ,{
-                text: 'Recarregar dados',
-                action: 'refresh',
-                iconCls: 'refresh',
-                itemId: 'refresh'
-            }
-        ];
+        this.tbar = [];
 
         this.columns = [
             Ext.create('Ext.grid.RowNumberer'),
             {header: 'ID',  dataIndex: 'id',  flex: 1},
-            {header: 'CPF',  dataIndex: 'cpf',  flex: 1},
-            {header: 'Nome',  dataIndex: 'nome',  flex: 1},
-            {header: 'E-mail',  dataIndex: 'email',  flex: 1},
-            {header: 'Ativo',  dataIndex: 'ativo',  flex: 1}
+            {header: 'Centro de Custo',  dataIndex: 'dsCentroCusto',  flex: 1},
+            {header: 'Ativo',  dataIndex: 'stAtivo',  flex: 1}
         ];
 
         this.dockedItems = [{

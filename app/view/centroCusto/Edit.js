@@ -1,16 +1,13 @@
 Ext.define('MSIERP.view.centroCusto.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.centroCustoEdit',
-    title : 'Edição de Parâmetro do Sistema',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
+    title : 'Edição de Centro de Custo',
+
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
+            border: false,
             fieldDefaults: {
                 anchor: '100%',
                 labelAlign: 'right',
@@ -26,31 +23,26 @@ Ext.define('MSIERP.view.centroCusto.Edit', {
             },
             items: [{
                 xtype: 'textfield',
-                name : 'dsPerfil',
-                ref: 'dsPerfil',
-                fieldLabel: 'Perfil',
+                name : 'dsCentroCusto',
+                ref: 'dsCentroCusto',
+                fieldLabel: 'Centro de Custo',
                 allowBlank: false
             },{
-                xtype: 'textfield',
-                name : 'stAtivo',
-                ref: 'stAtivo',
+                xtype: 'fieldcontainer',
                 fieldLabel: 'Ativo',
-                allowBlank: false                
-            }
+                defaultType: 'checkboxfield',
+                items: [
+                    {
+                        name      : 'stAtivo',
+                        inputValue: true,
+                        checked   : true,
+                        id        : 'stAtivo'
+                    }
+               ]}
             ]}
         ];
 
-        this.buttons = [{
-            text: 'Salvar',
-            action: 'save',
-            iconCls: 'save'
-        },
-        {
-            text: 'Cancelar',
-            scope: this,
-            iconCls: 'cancel',
-            handler: this.close
-        }];
+        this.buttons = [];
 
         this.callParent(arguments);
     }    

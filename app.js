@@ -38,7 +38,7 @@ Ext.application({
         
         /* Financeiro */
         'LancamentoContas', 'CentroCusto', 'ContaCorrente', 'FluxoCaixa', 'FormaPagamento', 'PlanoContas', 
-        'CondicoesPagamento', 'ContasPagarReceber', 'EmissaoCheques', 'CondicoesPagamento',  
+        'CondicoesPagamento', 'ContasPagarReceber', 'EmissaoCheques', 'CondicoesPagamento', 'Banco',
         
         /* Pessoas */
         'Cliente', 'Funcionario', 'Fornecedor',

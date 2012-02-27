@@ -1,16 +1,23 @@
+var dadosTipoConta = Ext.create('Ext.data.Store', {
+    fields: ['val', 'desc'],
+    data : [
+        {"val":"P", "desc":"Pagar"},
+        {"val":"R", "desc":"Receber"}
+    ]
+});
+
+Ext.require(['MSIERP.view.planoContas.Combo']);
+
 Ext.define('MSIERP.view.planoContas.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.planoContasEdit',
-    title : 'Edição de Parâmetro do Sistema',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
+    title : 'Edição de Plano de Conta',
+
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
+            border: false,
             fieldDefaults: {
                 anchor: '100%',
                 labelAlign: 'right',
@@ -25,32 +32,46 @@ Ext.define('MSIERP.view.planoContas.Edit', {
                 anchor: '100%'
             },
             items: [{
-                xtype: 'textfield',
-                name : 'dsPerfil',
-                ref: 'dsPerfil',
-                fieldLabel: 'Perfil',
+                xtype: 'planoContasCombo',
+                name : 'idPlanoContasPai',
+                ref: 'idPlanoContasPai',                
+                fieldLabel: 'Plano de Contas Pai',
                 allowBlank: false
             },{
                 xtype: 'textfield',
-                name : 'stAtivo',
-                ref: 'stAtivo',
+                name : 'Plano de Contas',
+                ref: 'dsPlanoContas',
+                fieldLabel: 'Descrição',
+                allowBlank: false
+            },{
+                xtype: 'textfield',
+                name : 'nrClassificiacao',
+                ref: 'nrClassificiacao',
+                fieldLabel: 'Nº Classificação',
+                allowBlank: true
+            },{
+                xtype: 'combobox',
+                fieldLabel: 'Tipo Conta',
+                store: dadosTipoConta,
+                queryMode: 'local',
+                displayField: 'desc',
+                valueField: 'val'             
+            },{
+                xtype: 'fieldcontainer',
                 fieldLabel: 'Ativo',
-                allowBlank: false                
-            }
+                defaultType: 'checkboxfield',
+                items: [
+                    {
+                        name      : 'stAtivo',
+                        inputValue: true,
+                        checked   : true,
+                        id        : 'stAtivo'
+                    }
+               ]}
             ]}
         ];
 
-        this.buttons = [{
-            text: 'Salvar',
-            action: 'save',
-            iconCls: 'save'
-        },
-        {
-            text: 'Cancelar',
-            scope: this,
-            iconCls: 'cancel',
-            handler: this.close
-        }];
+        this.buttons = [];
 
         this.callParent(arguments);
     }    

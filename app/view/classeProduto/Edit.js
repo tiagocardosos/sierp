@@ -1,16 +1,14 @@
+Ext.require(['MSIERP.view.AbstractForm']);
+
 Ext.define('MSIERP.view.classeProduto.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.classeProdutoEdit',
-    title : 'Edição de Parâmetro do Sistema',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
+    title : 'Edição de Classe de Produtos',
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
+            border: false,
             fieldDefaults: {
                 anchor: '100%',
                 labelAlign: 'right',
@@ -26,31 +24,26 @@ Ext.define('MSIERP.view.classeProduto.Edit', {
             },
             items: [{
                 xtype: 'textfield',
-                name : 'dsPerfil',
-                ref: 'dsPerfil',
-                fieldLabel: 'Perfil',
+                name : 'dsClasse',
+                ref: 'dsClasse',
+                fieldLabel: 'Classe',
                 allowBlank: false
             },{
-                xtype: 'textfield',
-                name : 'stAtivo',
-                ref: 'stAtivo',
+                xtype: 'fieldcontainer',
                 fieldLabel: 'Ativo',
-                allowBlank: false                
-            }
+                defaultType: 'checkboxfield',
+                items: [
+                    {
+                        name      : 'stAtivo',
+                        inputValue: true,
+                        checked   : true,
+                        id        : 'stAtivo'
+                    }
+               ]}
             ]}
         ];
 
-        this.buttons = [{
-            text: 'Salvar',
-            action: 'save',
-            iconCls: 'save'
-        },
-        {
-            text: 'Cancelar',
-            scope: this,
-            iconCls: 'cancel',
-            handler: this.close
-        }];
+        this.buttons = [];
 
         this.callParent(arguments);
     }    

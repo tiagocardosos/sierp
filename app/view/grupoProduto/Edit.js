@@ -1,17 +1,13 @@
 Ext.define('MSIERP.view.grupoProduto.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.grupoProdutoEdit',
     title : 'Edição de Parâmetro do Sistema',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
-            fieldDefaults: {
+            border: false,
+            fieldDefaults: {                
                 anchor: '100%',
                 labelAlign: 'right',
                 labelWidth: 140,
@@ -26,17 +22,22 @@ Ext.define('MSIERP.view.grupoProduto.Edit', {
             },
             items: [{
                 xtype: 'textfield',
-                name : 'dsPerfil',
-                ref: 'dsPerfil',
-                fieldLabel: 'Perfil',
+                name : 'dsGrupo',
+                ref: 'dsGrupo',
+                fieldLabel: 'Grupo',
                 allowBlank: false
             },{
-                xtype: 'textfield',
-                name : 'stAtivo',
-                ref: 'stAtivo',
+                xtype: 'fieldcontainer',
                 fieldLabel: 'Ativo',
-                allowBlank: false                
-            }
+                defaultType: 'checkboxfield',
+                items: [
+                    {
+                        name      : 'stAtivo',
+                        inputValue: true,
+                        checked   : true,
+                        id        : 'stAtivo'
+                    }
+               ]}
             ]}
         ];
 

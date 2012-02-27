@@ -1,6 +1,6 @@
-Ext.define('MSIERP.store.Perfils', {
+Ext.define('MSIERP.store.Banco', {
     extend: 'Ext.data.Store',
-    model: 'MSIERP.model.Perfil',
+    model: 'MSIERP.model.Banco',
     autoLoad: false,
     remoteSort: false,
     pageSize: 3,
@@ -8,10 +8,10 @@ Ext.define('MSIERP.store.Perfils', {
         simpleSortMode: true,
         type: 'ajax',
         api: {
-            read: 'php/perfil.php?action=fetchAll',
-            create: 'php/perfil.php?action=insert',
-            update: 'php/perfil.php?action=update',
-            destroy: 'php/perfil.php?action=delete'
+            read: 'php/banco.php?action=fetchAll',
+            create: 'php/banco.php?action=insert',
+            update: 'php/banco.php?action=update',
+            destroy: 'php/banco.php?action=delete'
         },
         actionMethods: {
             read: 'POST',
@@ -29,13 +29,6 @@ Ext.define('MSIERP.store.Perfils', {
             writeAllFields: true,
             encode: true,
             root: 'data'
-        },
-        extraParams: { 
-            start : 'start',   
-            limit : 'limit',  
-            sort : 'name',    
-            dir : 'ASC', 
-            total:'total' 
         }, 
         listeners: {
             exception: function(proxy, response, operation){

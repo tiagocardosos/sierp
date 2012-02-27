@@ -75,9 +75,9 @@ $menu = "{
                                 leaf:true,
                                 xtypeClass: 'formaPagamentoList'
                             },{
-                                text:'Condições de Pagamento',
+                                text:'Banco',
                                 leaf:true,
-                                xtypeClass: 'condicoesPagamentoList'
+                                xtypeClass: 'bancoList'
                             },{
                                 text:'Conta Corrente',
                                 leaf:true,

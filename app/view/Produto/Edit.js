@@ -1,16 +1,16 @@
+Ext.require(['MSIERP.view.unidadeProduto.Combo']);
+Ext.require(['MSIERP.view.classeProduto.Combo']);
+Ext.require(['MSIERP.view.grupoProduto.Combo']);
+
 Ext.define('MSIERP.view.produto.Edit', {
-    extend: 'Ext.window.Window',
+    extend: 'MSIERP.view.AbstractForm',
     alias : 'widget.produtoEdit',
-    title : 'Edição de Parâmetro do Sistema',
-    layout: 'fit',
-    padding: 10,
-    autoShow: true,
-    modal: true,    
+    title : 'Edição de Produto',
     initComponent: function() {
     	
         this.items = [{
             xtype: 'form',
-            style: 'background-color: #fff;',  
+            border: false,
             fieldDefaults: {
                 anchor: '100%',
                 labelAlign: 'right',
@@ -26,31 +26,58 @@ Ext.define('MSIERP.view.produto.Edit', {
             },
             items: [{
                 xtype: 'textfield',
-                name : 'dsPerfil',
-                ref: 'dsPerfil',
-                fieldLabel: 'Perfil',
+                name : 'dsProduto',
+                ref: 'dsProduto',
+                fieldLabel: 'Produto',
+                allowBlank: false
+            },{
+                xtype: 'unidadeProdutoCombo',
+                allowBlank: true
+            },{
+                xtype: 'classeProdutoCombo',
+                allowBlank: true
+            },{
+                xtype: 'textfield',
+                name : 'qtdMinima',
+                ref: 'qtdMinima',
+                fieldLabel: 'Est. Min.',
+                allowBlank: false                
+            },{
+                xtype: 'textfield',
+                name : 'qtdMaxima',
+                ref: 'qtdMaxima',
+                fieldLabel: 'Est. Max.',
+                allowBlank: false                
+            },{
+                xtype: 'grupoProdutoCombo'
+            },{
+                xtype: 'textfield',
+                name : 'prCusto',
+                ref: 'prCusto',
+                fieldLabel: 'Preço Custo',
                 allowBlank: false
             },{
                 xtype: 'textfield',
-                name : 'stAtivo',
-                ref: 'stAtivo',
+                name : 'prVenda',
+                ref: 'prVenda',
+                fieldLabel: 'Preço Venda',
+                allowBlank: true
+            },{
+                xtype: 'fieldcontainer',
                 fieldLabel: 'Ativo',
-                allowBlank: false                
-            }
+                defaultType: 'checkboxfield',
+                items: [
+                    {
+                        name      : 'stAtivo',
+                        inputValue: true,
+                        checked   : true,
+                        id        : 'stAtivo'
+                    }
+               ]}
             ]}
         ];
 
-        this.buttons = [{
-            text: 'Salvar',
-            action: 'save',
-            iconCls: 'save'
-        },
-        {
-            text: 'Cancelar',
-            scope: this,
-            iconCls: 'cancel',
-            handler: this.close
-        }];
+        this.buttons = [];
 
         this.callParent(arguments);
     }    

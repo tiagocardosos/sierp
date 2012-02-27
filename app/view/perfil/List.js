@@ -1,5 +1,7 @@
+Ext.require(['MSIERP.view.AbstractList']);
+
 Ext.define('MSIERP.view.perfil.List' ,{
-    extend: 'Ext.grid.Panel',
+    extend: 'MSIERP.view.AbstractList',
     alias : 'widget.perfilList',
     store: 'Perfil',
     title : 'Lista de Perfis',
@@ -14,7 +16,7 @@ Ext.define('MSIERP.view.perfil.List' ,{
         this.columns = [
             Ext.create('Ext.grid.RowNumberer'),
             {header: 'ID',  dataIndex: 'id',  flex: 1},
-            {header: 'Perfil',  dataIndex: 'dsPerfil',  flex: 1},
+            {header: 'Perfil',  dataIndex: 'dsPerfil',  flex: 2},
             {header: 'Ativo',  dataIndex: 'stAtivo',  flex: 1}
         ];
 
